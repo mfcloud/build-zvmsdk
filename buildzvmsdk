@@ -42,8 +42,6 @@ echo "===>Erasing old $REPOTOP, then cloning: $REPO -b $BRANCH"
 rm -rf ./$REPOTOP
 git clone $REPO -b $BRANCH
 
-cd $REPOTOP 2>/dev/null
-
 # Prepare environment
 rm -rf $BUILD/variable 2>/dev/null
 
@@ -52,7 +50,6 @@ echo "%_topdir $BUILD" > $BUILD/variable/.rpmmacros
 cp $BUILD/variable/.rpmmacros $HOME 2>/dev/null
 
 # Create build directories
-cd $BUILD/ 2>/dev/null
 rm -rf $BUILD/BUILD 2>/dev/null
 rm -rf $BUILD/RPMS 2>/dev/null
 rm -rf $BUILD/SRPMS 2>/dev/null
@@ -70,13 +67,10 @@ mkdir -p $SMCLIOPTDIR 2>/dev/null
 # rm -rf ./$REPOTOP
 # git clone $REPO -b $BRANCH
 
-# Move to the sdk directory
-cd - 2>/dev/null
-
 echo "===>compress sdk sourcefiles to $BUILD/SOURCES/python-zvm-sdk.tar.gz"
 pwd
 # Compress zThin source
-tar czf $BUILD/SOURCES/python-zvm-sdk.tar.gz --exclude .git --exclude "zthin-parts" ./
+tar czf $BUILD/SOURCES/python-zvm-sdk.tar.gz --exclude .git --exclude "zthin-parts" $REPOTOP
 
 cp ./zvmsdk.spec $BUILD/SPECS
 

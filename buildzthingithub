@@ -14,19 +14,7 @@
 #    under the License.
 #
 #------------------------------------------------------------------------------
-# Checkout, compile, and build RPM for zThin RPM
-#
-# This bash script will:
-#    -create a local git repo of the zThin source code.
-#    -compile, link, and make an RPM of the c files using rpmbuild
-#
-# Example: buildzthingithub master
-#
-# The code is stored on https://github.com/mfcloud/python-zvm-sdk.git
-# Code reviews are done using gerrithub:
-#    https://review.gerrithub.io/#/q/project:mfcloud/python-zvm-sdk
-#
-# -----------------------------------------------------------------------------
+
 if [[ -z "$1" ]]; then
    {
    echo "A branch must be specified"
@@ -58,7 +46,6 @@ echo "%_topdir $BUILD" > $BUILD/variable/.rpmmacros
 cp $BUILD/variable/.rpmmacros $HOME 2>/dev/null
 
 # Create build directories
-cd $BUILD/ 2>/dev/null
 rm -rf $BUILD/BUILD 2>/dev/null
 rm -rf $BUILD/RPMS 2>/dev/null
 rm -rf $BUILD/SRPMS 2>/dev/null
@@ -73,30 +60,25 @@ mkdir -p $SMCLIOPTDIR 2>/dev/null
 
 # Checkout the branch
 echo "===>Erasing old $REPOTOP, then cloning: $REPO -b $BRANCH"
+cd $BUILD  2> /dev/null
 rm -rf ./$REPOTOP
 git clone $REPO -b $BRANCH
+cd - 2>/dev/null
 
-# Move to the sdk directory
-cd $REPOTOP 2>/dev/null
+cp ./zthin.spec $BUILD/SPECS/
+cp ./zthinlogs $BUILD/$REPOTOP/$ZTHINTOP
 
-echo "===>compress zthin sourcefiles to $BUILD/SOURCES/zthin-build.tar.gz"
-pwd
-# Compress zThin source
+cd $BUILD/$REPOTOP
 tar czf $BUILD/SOURCES/zthin-build.tar.gz $ZTHINTOP
-cp ./$ZTHINTOP/zthin.spec $BUILD/SPECS
 
 echo "===>Switch back to zthin-parts, do: rpmbuild -ba -v $BUILD/SPECS/zthin.spec"
 cd $BUILD/$REPOTOP/$ZTHINTOP 2>/dev/null
 pwd
 rpmbuild -ba -v $BUILD/SPECS/zthin.spec
 
-mkdir -p $BUILD/OUTPUT/$BRANCH 2>/dev/null
-cp -R $BUILD/RPMS/s390x/* $BUILD/OUTPUT/$BRANCH
-cp -R $BUILD/SRPMS/* $BUILD/OUTPUT/$BRANCH
-
-
 # Erase build directories under /var/tmp
 rm -rf /var/tmp/zthin-*
 
 # Erase build directory /opt/zthin/bin/smcli
 rm -fr $SMCLIOPTDIR
+
