@@ -8,6 +8,7 @@ Source: python-zvm-sdk.tar.gz
 Vendor: IBM
 License: ASL 2.0
 Group: System/tools
+Requires: python-netaddr, python-PyJWT, python-requests, python-routes, python-webob, python-jsonschema, python-six
 BuildRoot: %{_tmppath}/python-zvm-sdk
 Prefix: /opt/python-zvm-sdk
 
