@@ -27,6 +27,10 @@ python setup.py build
 %install
 python setup.py install --single-version-externally-managed -O1 --root=%{buildroot} --prefix= --record=INSTALLED_FILES
 
+mkdir -p %{buildroot}/var/lib/zvmsdk
+mkdir -p %{buildroot}/etc/zvmsdk
+mkdir -p %{buildroot}/var/log/zvmsdk
+
 
 %clean
 rm -rf %{buildroot}
@@ -34,12 +38,12 @@ rm -rf %{buildroot}
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
 
-%dir(644, zvmsdk, zvmsdk) /etc/zvmsdk
-%dir(644, zvmsdk, zvmsdk) /var/log/zvmsdk
-%dir(755, zvmsdk, zvmsdk) /var/lib/zvmsdk
+%dir %attr(0644, zvmsdk, zvmsdk) /etc/zvmsdk
+%dir %attr(0644, zvmsdk, zvmsdk) /var/log/zvmsdk
+%dir %attr(0755, zvmsdk, zvmsdk) /var/lib/zvmsdk
 
 %pre
-/usr/bin/getent passwd zvmsdk || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk
+/usr/bin/getent passwd zvmsdk >/dev/null || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk
 
 %postun
 
