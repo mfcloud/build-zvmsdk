@@ -7,7 +7,9 @@ Release: 1
 Source: python-zvm-sdk.tar.gz
 Vendor: IBM
 License: ASL 2.0
+BuildArch: noarch
 Group: System/tools
+Requires: python-netaddr, python-PyJWT, python-requests, python-routes, python-webob, python-jsonschema, python-six, zthin
 BuildRoot: %{_tmppath}/python-zvm-sdk
 Prefix: /opt/python-zvm-sdk
 
@@ -26,7 +28,7 @@ tar -zxvf ../SOURCES/python-zvm-sdk.tar.gz -C ../BUILD/ --strip 1
 python setup.py build
 
 %install
-python setup.py install --single-version-externally-managed -O1 --root=%{buildroot} --record=INSTALLED_FILES
+python setup.py install --single-version-externally-managed -O1 --root=%{buildroot} --prefix= --record=INSTALLED_FILES
 
 mkdir -p /var/lib/zvmsdk
 chown -R zvmsdk:zvmsdk /var/lib/zvmsdk
