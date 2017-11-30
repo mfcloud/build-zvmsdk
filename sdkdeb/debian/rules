@@ -15,16 +15,8 @@ export PYBUILD_NAME=zvm-sdk
 override_dh_auto_build:
 	dh_auto_build
 
-# If you need to rebuild the Sphinx documentation
-# Add spinxdoc to the dh --with line
-#override_dh_auto_build:
-#       dh_auto_build
-#       PYTHONPATH=. http_proxy='127.0.0.1:9' sphinx-build -N -bhtml        docs/ build/html # HTML generator
-#       PYTHONPATH=. http_proxy='127.0.0.1:9' sphinx-build -N -bman        docs/ build/man # Manpage generator
-
-
 override_dh_install:
 	# rm -rf $(CURDIR)/debian/tmp
-	python setup.py install -f --install-layout=deb --root=$(CURDIR)/debian/python-zvm-sdk
+	python setup.py install -f --install-layout=deb --root=$(CURDIR)/debian/python-zvm-sdk --prefix=
 	PYTHONPATH=$(CURDIR)/debian/tmp/usr/lib/python2.7/dist-packages
 
