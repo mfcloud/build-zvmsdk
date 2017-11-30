@@ -3,7 +3,7 @@
 Summary: System z hardware control point (zThin)
 Name: %{name}
 Version: %(cat Version)
-Release: snap%(date +"%Y%m%d%H%M")
+Release: 1 
 Source: zthin-build.tar.gz
 Vendor: IBM
 License: IBM Copyright 2017
