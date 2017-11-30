@@ -1,0 +1,30 @@
+#!/usr/bin/make -f
+# See debhelper(7) (uncomment to enable)
+# output every command that modifies files on the build system.
+#export DH_VERBOSE = 1
+
+include /usr/share/python/python.mk
+
+export DH_VERBOSE = 1
+export PYBUILD_NAME=zvm-sdk
+
+%:
+	dh $@  --with python2,python3 --buildsystem=pybuild
+
+
+override_dh_auto_build:
+	dh_auto_build
+
+# If you need to rebuild the Sphinx documentation
+# Add spinxdoc to the dh --with line
+#override_dh_auto_build:
+#       dh_auto_build
+#       PYTHONPATH=. http_proxy='127.0.0.1:9' sphinx-build -N -bhtml        docs/ build/html # HTML generator
+#       PYTHONPATH=. http_proxy='127.0.0.1:9' sphinx-build -N -bman        docs/ build/man # Manpage generator
+
+
+override_dh_install:
+	rm -rf $(CURDIR)/debian/tmp
+	python setup.py install -f --install-layout=deb --root=$(CURDIR)/debian/python-python-zvm-sdk
+	PYTHONPATH=$(CURDIR)/debian/tmp/usr/lib/python2.7/dist-packages
+
