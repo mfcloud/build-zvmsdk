@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -e
 
 /usr/bin/getent passwd zvmsdk >/dev/null || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk

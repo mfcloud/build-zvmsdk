@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -e
+
+chmod 755 /opt/zthin/bin/*
+chmod 755 /opt/zthin/bin/IUCV/iucvserd
+chmod 755 /opt/zthin/bin/IUCV/iucvclnt
+chmod 755 /opt/zthin/bin/IUCV/iucvserv
+chmod 755 /opt/zthin/lib/zthinshellutils

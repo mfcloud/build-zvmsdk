@@ -1,0 +1,15 @@
+Source: zthin-parts
+Section: unknown
+Priority: optional
+Maintainer: jichen <jichenjc@cn.ibm.com> huangrui <bjhuangr@cn.ibm.com>
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.6
+Homepage:
+#Vcs-Git: git://anonscm.debian.org/collab-maint/zthin-parts.git
+#Vcs-Browser: https://anonscm.debian.org/cgit/collab-maint/zthin-parts.git
+
+Package: zthin-parts
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: zthin package
+ zthin package
