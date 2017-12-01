@@ -38,8 +38,8 @@ rm -rf %{buildroot}
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
 
-%dir %attr(0644, zvmsdk, zvmsdk) /etc/zvmsdk
-%dir %attr(0644, zvmsdk, zvmsdk) /var/log/zvmsdk
+%dir %attr(0755, zvmsdk, zvmsdk) /etc/zvmsdk
+%dir %attr(0755, zvmsdk, zvmsdk) /var/log/zvmsdk
 %dir %attr(0755, zvmsdk, zvmsdk) /var/lib/zvmsdk
 
 %pre

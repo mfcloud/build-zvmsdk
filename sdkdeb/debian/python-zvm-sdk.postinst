@@ -5,15 +5,15 @@ set -e
 mkdir -p /var/log/zvmsdk
 chown zvmsdk /var/log/zvmsdk
 chgrp zvmsdk /var/log/zvmsdk
-chmod 644 /var/log/zvmsdk
+chmod 0755 /var/log/zvmsdk
 
 mkdir -p /etc/zvmsdk
 chown zvmsdk /etc/zvmsdk
 chgrp zvmsdk /etc/zvmsdk
-chmod 644 /etc/zvmsdk
+chmod 0755 /etc/zvmsdk
 
 mkdir -p /var/lib/zvmsdk
 chown zvmsdk /var/lib/zvmsdk
 chgrp zvmsdk /var/lib/zvmsdk
-chmod 755 /var/lib/zvmsdk
+chmod 0755 /var/lib/zvmsdk
 
