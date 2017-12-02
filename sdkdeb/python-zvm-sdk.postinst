@@ -2,7 +2,8 @@
 
 set -e
 
-/usr/bin/getent passwd zvmsdk >/dev/null || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk
+/usr/bin/getent passwd zvmsdk >/dev/null || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk -s /sbin/nologin
+bash -c "echo \"group ALL=(zvmdk) NOPASSWD: ALL\" >> /etc/sudoers"
 
 mkdir -p /var/log/zvmsdk
 chown zvmsdk /var/log/zvmsdk

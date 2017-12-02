@@ -43,7 +43,8 @@ rm -rf %{buildroot}
 %dir %attr(0755, zvmsdk, zvmsdk) /var/lib/zvmsdk
 
 %pre
-/usr/bin/getent passwd zvmsdk >/dev/null || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk
+/usr/bin/getent passwd zvmsdk >/dev/null || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk -s /sbin/nologin
+bash -c "echo \"group ALL=(zvmdk) NOPASSWD: ALL\" >> /etc/sudoers"
 
 %postun
 
