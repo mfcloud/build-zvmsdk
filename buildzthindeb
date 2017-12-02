@@ -1,0 +1,35 @@
+if [[ -z "$1" ]]; then
+   {
+   echo "A branch must be specified"
+   exit 1
+   }
+fi
+
+BRANCH=$1
+BUILD=~/rpmbuild
+REPO=https://github.com/mfcloud/python-zvm-sdk.git
+REPOTOP=python-zvm-sdk
+ZTHIN=zthin-parts
+
+EXISTS=$(git ls-remote -h $REPO | grep "$BRANCH"$ | wc -l )
+if [ "$EXISTS" == 0 ] ; then
+{
+  echo "Branch $BRANCH does not exist on /mfcloud/python-zvm-sdk"
+  echo "Try choosing one of the following branches:  "
+  git ls-remote --heads $REPO | awk -F "heads/" '{print $2}'
+  exit 1
+  }
+fi
+
+# Checkout the branch
+echo "===>Erasing old $REPOTOP, then cloning: $REPO -b $BRANCH"
+rm -rf ./$REPOTOP
+git clone $REPO -b $BRANCH
+
+mkdir $REPOTOP/$ZTHIN/debian
+cp zthindeb/* $REPOTOP/$ZTHIN/debian
+cp ./zthinlogs $REPOTOP/$ZTHIN
+cd $REPOTOP/$ZTHIN
+
+dpkg-buildpackage -uc -us
+
