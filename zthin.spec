@@ -26,11 +26,13 @@ make
 %install
 make install
 make post
-make clean
 
-mkdir -p $RPM_BUILD_ROOT/usr/bin
-ln -sfd %{prefix}/bin/smcli $RPM_BUILD_ROOT/usr/bin
-chmod 644 $RPM_BUILD_ROOT/usr/bin/smcli
+# mkdir -p $RPM_BUILD_ROOT/usr/bin
+# ln -sfd %{prefix}/bin/smcli $RPM_BUILD_ROOT/usr/bin
+# chmod 644 $RPM_BUILD_ROOT/usr/bin/smcli
+mkdir -p $RPM_BUILD_ROOT/opt/zthin/bin
+cp smcli $RPM_BUILD_ROOT/opt/zthin/bin/
+chmod 755 $RPM_BUILD_ROOT/opt/zthin/bin/smcli
 mkdir -p $RPM_BUILD_ROOT/usr/share/man/man1/
 cp smcli.1.gz $RPM_BUILD_ROOT/usr/share/man/man1/
 mkdir -p $RPM_BUILD_ROOT/var/opt/zthin
@@ -46,6 +48,8 @@ cp -rf zthin/bin/* $RPM_BUILD_ROOT/opt/zthin/bin
 cp zthin/lib/* $RPM_BUILD_ROOT/opt/zthin/lib
 cp zthinlogs $RPM_BUILD_ROOT/var/opt/zthin
 echo "zthin version: "%{version} "Built on: "%{builddate} > $RPM_BUILD_ROOT/opt/zthin/version
+
+make clean
 
 %post
 
@@ -96,13 +100,13 @@ fi
 
 %preun
 # Delete man page and smcli command
-rm -rf /usr/share/man/man1/smcli.1.gz
+# rm -rf /usr/share/man/man1/smcli.1.gz
 
 %files
 # Files provided by this package
 %defattr(-,root,root)
 /opt/zthin/*
-%config(noreplace) /usr/bin/smcli
+%config(noreplace) /opt/zthin/bin/smcli
 %config(noreplace) /usr/share/man/man1/smcli.1.gz
 %config(noreplace) /var/opt/zthin/tracing.conf
 %config(noreplace) /var/opt/zthin/settings.conf
