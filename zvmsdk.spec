@@ -25,7 +25,7 @@ tar -zxvf ../SOURCES/python-zvm-sdk.tar.gz -C ../BUILD/ --strip 1
 python setup.py build
 
 %install
-python setup.py install --single-version-externally-managed -O1 --root=%{buildroot} --prefix= --record=INSTALLED_FILES
+python setup.py install --single-version-externally-managed -O1 --root=%{buildroot} --record=INSTALLED_FILES
 
 mkdir -p %{buildroot}/var/lib/zvmsdk
 mkdir -p %{buildroot}/etc/zvmsdk
