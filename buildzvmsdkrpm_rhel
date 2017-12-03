@@ -72,10 +72,10 @@ pwd
 # Compress zThin source
 tar czf $BUILD/SOURCES/python-zvm-sdk.tar.gz --exclude .git --exclude "zthin-parts" $REPOTOP
 
-cp ./zvmsdk.spec $BUILD/SPECS
+cp ./zvmsdk_rhel.spec $BUILD/SPECS
 
-echo "===>Switch back to python-zvm-sdk, do: rpmbuild -ba -v $BUILD/SPECS/python-zvm-sdk.spec"
+echo "===>Switch back to python-zvm-sdk, do: rpmbuild -ba -v $BUILD/SPECS/zvmsdk_rhel.spec"
 cd $BUILD/$REPOTOP/$SDK 2>/dev/null
 pwd
-rpmbuild -ba -v $BUILD/SPECS/zvmsdk.spec
+rpmbuild -ba -v $BUILD/SPECS/zvmsdk_rhel.spec
 
