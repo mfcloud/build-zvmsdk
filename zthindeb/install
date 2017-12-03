@@ -8,6 +8,7 @@ config/tracing.conf /var/opt/zthin/
 config/settings.conf /opt/zthin/
 config/zthin.conf /etc/ld.so.conf.d
 zthin/lib/* /opt/zthin/lib/
+libzthin.so /opt/zthin/lib/
 zthinlogs /var/opt/zthin/
 zthin/bin/* /opt/zthin/bin/
 iucvclnt /opt/zthin/bin/IUCV/
