@@ -23,3 +23,9 @@ chown zvmsdk /var/lib/zvmsdk
 chgrp zvmsdk /var/lib/zvmsdk
 chmod 0755 /var/lib/zvmsdk
 
+chown zvmsdk /var/lib/zvmsdk/setupDisk
+chgrp zvmsdk /var/lib/zvmsdk/setupDisk
+
+chown zvmsdk /etc/zvmsdk/*
+chgrp zvmsdk /etc/zvmsdk/*
+
