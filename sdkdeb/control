@@ -11,7 +11,7 @@ X-Python-Version: >= 2.7
 Package: python-zvm-sdk
 Architecture: all
 # Suggests: python-zvm-sdk-doc
-Depends: python-netaddr, python-jwt, python-requests, python-routes, python-webob, python-jsonschema, python-six, zthin
+Depends: python (>= 2.7), python-netaddr, python-jwt, python-requests, python-routes, python-webob, python-jsonschema, python-six, zthin
 Description: z/VM cloud connector (Python 2)
   System z/VM cloud connector is a set of APIs to be used
   by external API consumer.
