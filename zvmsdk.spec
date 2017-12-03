@@ -15,7 +15,7 @@ Prefix: /opt/python-zvm-sdk
 
 %description
 The System z/VM cloud connector is a set of APIs to be used
-by external
+by external API consumer.
 %define builddate %(date)
 
 %prep
