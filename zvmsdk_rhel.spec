@@ -9,6 +9,7 @@ Vendor: IBM
 License: ASL 2.0
 BuildArch: noarch
 Group: System/tools
+Autoreq: no
 Requires: python >= 2.7, python-netaddr, python-jwt, python-requests, python-routes, python-webob, python-jsonschema, python-six, zthin
 BuildRoot: %{_tmppath}/python-zvm-sdk
 Prefix: /opt/python-zvm-sdk
