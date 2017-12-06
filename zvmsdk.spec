@@ -7,7 +7,9 @@ Release: 1
 Source: python-zvm-sdk.tar.gz
 Vendor: IBM
 License: ASL 2.0
+BuildArch: noarch
 Group: System/tools
+Requires: python-netaddr, python-PyJWT, python-requests, python-routes, python-webob, python-jsonschema, python-six, zthin
 BuildRoot: %{_tmppath}/python-zvm-sdk
 Prefix: /opt/python-zvm-sdk
 
@@ -17,34 +19,27 @@ by external
 %define builddate %(date)
 
 %prep
-# if user zvmsdk not exist, add zvmsdk user
-/usr/bin/getent passwd zvmsdk || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk
-
 tar -zxvf ../SOURCES/python-zvm-sdk.tar.gz -C ../BUILD/ --strip 1
 
 %build
 python setup.py build
 
 %install
-python setup.py install --single-version-externally-managed -O1 --root=%{buildroot} --record=INSTALLED_FILES
-
-mkdir -p /var/lib/zvmsdk
-chown -R zvmsdk:zvmsdk /var/lib/zvmsdk
-chmod -R 755 /var/lib/zvmsdk
-
-mkdir -p /var/log/zvmsdk
-chown -R zvmsdk:zvmsdk /var/log/zvmsdk
-chmod -R 755 /var/log/zvmsdk
-
-mkdir -p /etc/zvmsdk
-chown -R zvmsdk:zvmsdk /etc/zvmsdk
-chmod -R 755 /etc/zvmsdk
+python setup.py install --single-version-externally-managed -O1 --root=%{buildroot} --prefix= --record=INSTALLED_FILES
 
 
 %clean
 rm -rf %{buildroot}
+
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
+
+%dir(644, zvmsdk, zvmsdk) /etc/zvmsdk
+%dir(644, zvmsdk, zvmsdk) /var/log/zvmsdk
+%dir(755, zvmsdk, zvmsdk) /var/lib/zvmsdk
+
+%pre
+/usr/bin/getent passwd zvmsdk || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk
 
 %postun
 
