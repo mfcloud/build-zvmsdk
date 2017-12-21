@@ -31,6 +31,8 @@ python setup.py install --single-version-externally-managed -O1 --root=%{buildro
 mkdir -p %{buildroot}/var/lib/zvmsdk
 mkdir -p %{buildroot}/etc/zvmsdk
 mkdir -p %{buildroot}/var/log/zvmsdk
+mkdir -p %{buildroot}/var/opt/zvmsdk
+cp zvmsdklogs %{buildroot}/var/opt/zvmsdk
 
 
 %clean
@@ -41,7 +43,10 @@ rm -rf %{buildroot}
 
 %dir %attr(0755, zvmsdk, zvmsdk) /etc/zvmsdk
 %dir %attr(0755, zvmsdk, zvmsdk) /var/log/zvmsdk
+%dir %attr(0755, zvmsdk, zvmsdk) /var/opt/zvmsdk
 %dir %attr(0755, zvmsdk, zvmsdk) /var/lib/zvmsdk
+
+%config(noreplace) /var/opt/zvmsdk/zvmsdklogs
 
 %pre
 /usr/bin/getent passwd zvmsdk >/dev/null || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk -s /sbin/nologin
@@ -52,7 +57,13 @@ chgrp zvmsdk /var/lib/zvmsdk/setupDisk
 chown zvmsdk /etc/zvmsdk/*
 chgrp zvmsdk /etc/zvmsdk/*
 
+if [ ! -f "/etc/logrotate.d/zvmsdklogs" ]; then
+    cp /var/opt/zvmsdk/zvmsdklogs /etc/logrotate.d
+fi
+
 
 %postun
 userdel zvmsdk
 groupdel zvmsdk
+
+rm -fr /etc/logrotate.d/zvmsdklogs
