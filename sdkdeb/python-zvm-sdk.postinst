@@ -2,7 +2,7 @@
 
 set -e
 
-/usr/bin/getent passwd zvmsdk >/dev/null || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk -s /sbin/nologin
+/usr/bin/getent passwd zvmsdk >/dev/null || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk -s /sbin/nologin 2>/dev/null 1>&2
 
 mkdir -p /var/log/zvmsdk
 chown zvmsdk /var/log/zvmsdk
