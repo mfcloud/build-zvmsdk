@@ -27,6 +27,7 @@ rm -rf ./$REPOTOP
 git clone $REPO -b $BRANCH
 
 mkdir $REPOTOP/debian
+cp zvmsdklogs $REPOTOP/
 cp sdkdeb/* $REPOTOP/debian
 cd $REPOTOP
 

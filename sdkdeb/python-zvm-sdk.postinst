@@ -25,3 +25,5 @@ chgrp zvmsdk /var/lib/zvmsdk/setupDisk
 chown zvmsdk /etc/zvmsdk/*
 chgrp zvmsdk /etc/zvmsdk/*
 
+
+cp /var/opt/zvmsdk/zvmsdklogs /etc/logrotate.d/

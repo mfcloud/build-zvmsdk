@@ -3,3 +3,5 @@
 set -e
 
 userdel zvmsdk
+
+rm -fr /etc/logrotate.d/zvmsdklogs
