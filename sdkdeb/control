@@ -1,20 +1,21 @@
 Source: python-zvm-sdk
-Section: python
+Section: libs
 Priority: optional
 Maintainer: jichenjc <jichenjc@cn.ibm.com> huangrui <bjhuangr@cn.ibm.com>
 #Build-Depends: debhelper (>=9),dh-python,python-all (>= 2.6.6-3~),python-setuptools
 Standards-Version: 3.9.6
-Homepage: 
+# FIXME: switch to IBM home page later
+Homepage: http://cloudlib4zvm.readthedocs.io
 X-Python-Version: >= 2.7
-# X-Python3-Version: >= 3.5
 
 Package: python-zvm-sdk
 Architecture: all
 # Suggests: python-zvm-sdk-doc
-Depends: python (>= 2.7), python-netaddr, python-jwt, python-requests, python-routes, python-webob, python-jsonschema, python-six, zthin
-Description: z/VM cloud connector (Python 2)
-  System z/VM cloud connector is a set of APIs to be used
+Depends: python (>= 2.7), python-netaddr, python-jwt, python-requests, python-routes, python-webob, python-jsonschema, python-six, zthin (>= 3.1.0)
+Description: z/VM cloud connector
+  The System z/VM cloud connector is a set of APIs to be used
   by external API consumer.
+
 
 # Package: python-zvm-sdk
 # Architecture: all

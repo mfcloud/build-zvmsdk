@@ -1,14 +1,15 @@
 Source: zthin
-Section: zthin
+Section: libs
 Priority: optional
 Maintainer: jichen <jichenjc@cn.ibm.com> huangrui <bjhuangr@cn.ibm.com>
 #Build-Depends: debhelper (>=9)
 Standards-Version: 3.9.6
-Homepage:
+# FIXME: switch to IBM home page later
+Homepage: http://cloudlib4zvm.readthedocs.io
 
 Package: zthin
 Architecture: s390x
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends:
 Description: zthin package
   The System z hardware control point (zThin) is a set of APIs to interface with
   z/VM SMAPI. It is used to manage virtual machines running Linux on

@@ -6,7 +6,7 @@ Version: %(cat Version)
 Release: 1 
 Source: zthin-build.tar.gz
 Vendor: IBM
-License: IBM Copyright 2017
+License: ASL 2.0
 Group: System/tools
 BuildRoot: %{_tmppath}/zthin
 Prefix: /opt/zthin
@@ -15,6 +15,7 @@ Prefix: /opt/zthin
 The System z hardware control point (zThin) is a set of APIs to interface with
 z/VM SMAPI. It is used to manage virtual machines running Linux on
 System z.
+
 %define builddate %(date)
 
 %prep

@@ -2,7 +2,7 @@
 
 Summary: IBM z/VM cloud connector
 Name: %{name}
-Version: 0.3.0
+Version: 0.3.2
 Release: 1
 Source: python-zvm-sdk.tar.gz
 Vendor: IBM
@@ -10,14 +10,13 @@ License: ASL 2.0
 BuildArch: noarch
 Group: System/tools
 Autoreq: no
-Requires: python >= 2.7, python-netaddr, python-jwt, python-requests, python-routes, python-webob, python-jsonschema, python-six, zthin
+Requires: python >= 2.7, python-netaddr, python-jwt, python-requests, python-routes, python-webob, python-jsonschema, python-six, zthin >= 3.1.0
 BuildRoot: %{_tmppath}/python-zvm-sdk
 Prefix: /opt/python-zvm-sdk
 
 %description
 The System z/VM cloud connector is a set of APIs to be used
 by external API consumer.
-%define builddate %(date)
 
 %prep
 tar -zxvf ../SOURCES/python-zvm-sdk.tar.gz -C ../BUILD/ --strip 1
