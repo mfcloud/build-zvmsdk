@@ -42,10 +42,10 @@ if [ "$EXISTS" == 0 ] ; then
 fi
 
 # Prepare environment
-# rm -rf $BUILD/variable 2>/dev/null
-# mkdir -p $BUILD/variable 2>/dev/null
-# echo "%_topdir $BUILD" > $BUILD/variable/.rpmmacros
-# cp $BUILD/variable/.rpmmacros $HOME 2>/dev/null
+rm -rf $BUILD/variable 2>/dev/null
+mkdir -p $BUILD/variable 2>/dev/null
+echo "%_topdir $BUILD" > $BUILD/variable/.rpmmacros
+cp $BUILD/variable/.rpmmacros $HOME 2>/dev/null
 
 # Create build directories
 rm -rf $BUILD/BUILD 2>/dev/null
