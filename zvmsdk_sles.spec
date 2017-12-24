@@ -62,6 +62,6 @@ fi
 
 
 %postun
-userdel zvmsdk 2>/dev/null 1>&2
+/usr/bin/getent passwd zvmsdk >/dev/null && userdel zvmsdk 2>/dev/null 1>&2
 
 rm -fr /etc/logrotate.d/zvmsdklogs
