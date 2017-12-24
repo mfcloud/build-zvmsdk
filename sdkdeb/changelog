@@ -1,6 +1,6 @@
-python-zvm-sdk (0.3.2-1) stable; urgency=medium
+python-zvm-sdk (1.0.0) stable; urgency=medium
 
   * Initial release
 
- -- jichen <jichen@unknown>  Fri, 01 Dec 2017 15:43:15 +0800
+ -- jichen <jichen@unknown>  Tues, 08 Jan 2018 15:43:15 +0800
 
