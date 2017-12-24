@@ -3,7 +3,7 @@
     dateext
     dateformat -%Y-%m-%d-%s
     rotate 4
-    create
+    copytruncate
     size=20M
     notifempty
     missingok
