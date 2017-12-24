@@ -48,7 +48,7 @@ rm -rf %{buildroot}
 %config(noreplace) /var/opt/zvmsdk/zvmsdklogs
 
 %pre
-/usr/bin/getent passwd zvmsdk >/dev/null || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk -s /sbin/nologin 2>/dev/null 1>&2
+/usr/bin/getent passwd zvmsdk >/dev/null || /usr/sbin/useradd -r -d /var/lib/zvmsdk -m -U zvmsdk -s /bin/bash 2>/dev/null 1>&2
 
 %post
 chown zvmsdk /var/lib/zvmsdk/setupDisk
