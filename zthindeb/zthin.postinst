@@ -8,6 +8,8 @@ chmod 755 /opt/zthin/bin/IUCV/iucvclnt
 chmod 755 /opt/zthin/bin/IUCV/iucvserv
 chmod 755 /opt/zthin/lib/zthinshellutils
 
+ln -sfd /opt/zthin/bin/smcli /usr/bin/smcli
+
 mkdir -p /var/log/zthin
 touch /var/log/zthin/zthin.log
 
