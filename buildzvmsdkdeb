@@ -24,7 +24,6 @@ if [[ -z "$1" ]]; then
 fi
 
 BRANCH=$1
-BUILD=~/rpmbuild
 REPO=https://github.com/mfcloud/python-zvm-sdk.git
 REPOTOP=python-zvm-sdk
 

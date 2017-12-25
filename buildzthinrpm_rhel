@@ -68,16 +68,16 @@ git clone $REPO -b $BRANCH
 cd - 2>/dev/null
 
 # copy files to build directory
-cp ./zthin.spec $BUILD/SPECS/
+cp ./zthin_rhel.spec $BUILD/SPECS/
 cp ./zthinlogs $BUILD/$REPOTOP/$ZTHINTOP
 
 cd $BUILD/$REPOTOP
 tar czf $BUILD/SOURCES/zthin-build.tar.gz $ZTHINTOP
 
-echo "===>Switch back to zthin-parts, do: rpmbuild -ba -v $BUILD/SPECS/zthin.spec"
+echo "===>Switch back to zthin-parts, do: rpmbuild -ba -v $BUILD/SPECS/zthin_rhel.spec"
 cd $BUILD/$REPOTOP/$ZTHINTOP 2>/dev/null
 pwd
-rpmbuild -ba -v $BUILD/SPECS/zthin.spec
+rpmbuild -ba -v $BUILD/SPECS/zthin_rhel.spec
 
 # Erase build directories under /var/tmp
 rm -rf /var/tmp/zthin-*
