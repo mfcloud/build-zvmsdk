@@ -23,7 +23,7 @@ if [[ -z "$1" ]]; then
 fi
 
 BRANCH=$1
-BUILD=/root/zthin-build
+BUILD=/root/zthin-build-sles
 REPO=https://github.com/mfcloud/python-zvm-sdk.git
 REPOTOP=python-zvm-sdk
 ZTHINTOP=zthin-parts
