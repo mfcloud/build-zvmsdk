@@ -2,7 +2,8 @@
 
 set -e
 
-/usr/bin/getent passwd zvmsdk >/dev/null && userdel zvmsdk 2>/dev/null 1>&2
+# need add echo 0 because sometime service still running, need make $? to be 0
+/usr/bin/getent passwd zvmsdk >/dev/null && userdel zvmsdk 2>/dev/null 1>&2 || echo 0 > /dev/null
 
 rm -fr /etc/logrotate.d/zvmsdklogs
 
