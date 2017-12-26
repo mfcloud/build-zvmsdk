@@ -3,5 +3,6 @@
 set -e
 
 rm -fr /etc/logrotate.d/zthinlogs
-
+rm -fr /etc/ld.so.conf.d/zthin.conf
 rm -fr /usr/bin/smcli
+
