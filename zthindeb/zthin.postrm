@@ -3,3 +3,5 @@
 set -e
 
 rm -fr /etc/logrotate.d/zthinlogs
+
+rm -fr /usr/bin/smcli

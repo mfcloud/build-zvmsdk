@@ -28,9 +28,9 @@ make
 make install
 make post
 
-# mkdir -p $RPM_BUILD_ROOT/usr/bin
-# ln -sfd %{prefix}/bin/smcli $RPM_BUILD_ROOT/usr/bin
-# chmod 644 $RPM_BUILD_ROOT/usr/bin/smcli
+mkdir -p $RPM_BUILD_ROOT/usr/bin
+ln -sfd %{prefix}/bin/smcli $RPM_BUILD_ROOT/usr/bin
+chmod 644 $RPM_BUILD_ROOT/usr/bin/smcli
 mkdir -p $RPM_BUILD_ROOT/opt/zthin/bin
 cp smcli $RPM_BUILD_ROOT/opt/zthin/bin/
 chmod 755 $RPM_BUILD_ROOT/opt/zthin/bin/smcli
@@ -107,6 +107,7 @@ fi
 # Files provided by this package
 %defattr(-,root,root)
 /opt/zthin/*
+%config(noreplace) /usr/bin/smcli
 %config(noreplace) /opt/zthin/bin/smcli
 %config(noreplace) /usr/share/man/man1/smcli.1.gz
 %config(noreplace) /var/opt/zthin/tracing.conf
