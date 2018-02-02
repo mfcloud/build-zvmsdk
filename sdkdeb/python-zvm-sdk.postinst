@@ -29,4 +29,4 @@ chgrp zvmsdk /etc/zvmsdk/*
 cp /var/opt/zvmsdk/zvmsdklogs /etc/logrotate.d/
 
 # call gen-token to create init token
-gen-token
+/usr/bin/gen-token
