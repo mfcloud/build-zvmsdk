@@ -62,6 +62,9 @@ fi
 
 # call gen-token to create init token
 gen-token
+chown zvmsdk /etc/zvmsdk/token.dat
+chgrp zvmsdk /etc/zvmsdk/token.dat
+chmod 0600 /etc/zvmsdk/token.dat
 
 
 %postun
