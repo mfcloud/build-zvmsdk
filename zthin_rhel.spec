@@ -29,8 +29,6 @@ make install
 make post
 
 mkdir -p $RPM_BUILD_ROOT/usr/bin
-ln -sfd %{prefix}/bin/smcli $RPM_BUILD_ROOT/usr/bin
-chmod 644 $RPM_BUILD_ROOT/usr/bin/smcli
 mkdir -p $RPM_BUILD_ROOT/opt/zthin/bin
 cp smcli $RPM_BUILD_ROOT/opt/zthin/bin/
 chmod 755 $RPM_BUILD_ROOT/opt/zthin/bin/smcli
@@ -53,6 +51,9 @@ echo "zthin version: "%{version} "Built on: "%{builddate} > $RPM_BUILD_ROOT/opt/
 make clean
 
 %post
+
+ln -sfd %{prefix}/bin/smcli $RPM_BUILD_ROOT/usr/bin
+chmod 644 $RPM_BUILD_ROOT/usr/bin/smcli
 
 # Create log file for zThin
 mkdir -p /var/log/zthin
