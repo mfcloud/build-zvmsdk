@@ -43,8 +43,8 @@ mkdir -p $RPM_BUILD_ROOT/etc/ld.so.conf.d
 cp config/zthin.conf $RPM_BUILD_ROOT/etc/ld.so.conf.d
 chmod -R 755 zthin/bin/*
 chmod -R 755 zthin/lib/*
-chmod -R 644 zthin/bin/IUCV/iucvserd
-chmod -R 644 zthin/bin/IUCV/iucvserd.service
+chmod -R 755 zthin/bin/IUCV/iucvserd
+chmod -R 755 zthin/bin/IUCV/iucvserd.service
 cp -rf zthin/bin/* $RPM_BUILD_ROOT/opt/zthin/bin
 cp zthin/lib/* $RPM_BUILD_ROOT/opt/zthin/lib
 cp zthinlogs $RPM_BUILD_ROOT/var/opt/zthin
