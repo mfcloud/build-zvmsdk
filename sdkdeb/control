@@ -1,7 +1,7 @@
 Source: python-zvm-sdk
 Section: libs
 Priority: optional
-Maintainer: jichenjc <jichenjc@cn.ibm.com> huangrui <bjhuangr@cn.ibm.com>
+Maintainer: jichen <jichenjc@cn.ibm.com>
 #Build-Depends: debhelper (>=9),dh-python,python-all (>= 2.6.6-3~),python-setuptools
 Standards-Version: 3.9.6
 # FIXME: switch to IBM home page later
