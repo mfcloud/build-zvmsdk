@@ -2,7 +2,7 @@
 
 Summary: IBM z/VM cloud connector
 Name: %{name}
-Version: 1.0.1
+Version: 1.4.0
 Release: 1
 Source: python-zvm-sdk.tar.gz
 Vendor: IBM
