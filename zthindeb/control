@@ -11,6 +11,6 @@ Package: zthin
 Architecture: s390x
 Depends:
 Description: zthin package
-The System z hardware control point (zThin) is a set of APIs to interface with
-z/VM SMAPI. It is used to manage virtual machines running Linux on
-System z.
+ The System z hardware control point (zThin) is a set of APIs to interface with
+ z/VM SMAPI. It is used to manage virtual machines running Linux on
+ System z.
