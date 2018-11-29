@@ -60,8 +60,8 @@ if [ ! -f "/etc/logrotate.d/zvmsdklogs" ]; then
     cp /var/opt/zvmsdk/zvmsdklogs /etc/logrotate.d
 fi
 
-# call gen-token to create init token
-gen-token
+# call zvmsdk-gentoken to create init token
+zvmsdk-gentoken
 chown zvmsdk /etc/zvmsdk/token.dat
 chgrp zvmsdk /etc/zvmsdk/token.dat
 chmod 0600 /etc/zvmsdk/token.dat
