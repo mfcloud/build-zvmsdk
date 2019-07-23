@@ -3,7 +3,7 @@
 Summary: System z hardware control point (zThin)
 Name: %{name}
 Version: %(cat Version)
-Release: 1
+Release: 1.ibm%{?dist}
 Source: zthin-build.tar.gz
 Vendor: IBM
 License: ASL 2.0
