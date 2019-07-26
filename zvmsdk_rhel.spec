@@ -10,7 +10,7 @@ License: ASL 2.0
 BuildArch: noarch
 Group: System/tools
 Autoreq: no
-Requires: python >= 2.7, python-netaddr >= 0.7.5, python2-PyJWT >= 1.0.1, python-requests >= 2.6.0, python-routes >= 2.2, python-webob >= 1.2.3, python2-jsonschema >= 2.3.0, python-six >= 1.9.0, zthin >= 3.1.0
+Requires: python >= 2.7, python-netaddr >= 0.7.5, python2-PyJWT >= 1.0.1, python2-requests >= 2.6.0, python-routes >= 2.2, python-webob >= 1.2.3, python2-jsonschema >= 2.3.0, python-six >= 1.9.0, zthin >= 3.1.0
 BuildRoot: %{_tmppath}/python-zvm-sdk
 Prefix: /opt/python-zvm-sdk
 
