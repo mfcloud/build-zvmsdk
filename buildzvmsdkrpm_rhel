@@ -23,7 +23,7 @@ fi
 
 BRANCH=$1
 BUILD=~/rpmbuild
-REPO=https://github.com/mfcloud/python-zvm-sdk.git
+REPO=https://github.com/openmainframeproject/python-zvm-sdk.git
 REPOTOP=python-zvm-sdk
 SDK=python-zvm-sdk
 
