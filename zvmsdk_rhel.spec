@@ -32,14 +32,16 @@ mkdir -p %{buildroot}/etc/zvmsdk
 mkdir -p %{buildroot}/var/log/zvmsdk
 mkdir -p %{buildroot}/var/opt/zvmsdk
 cp zvmsdklogs %{buildroot}/var/opt/zvmsdk
-
+cp tools/share/zvmguestconfigure  %{buildroot}/var/lib/zvmsdk/
+cp tools/share/zvmguestconfigure.service %{buildroot}/var/lib/zvmsdk/
 
 %clean
 rm -rf %{buildroot}
 
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
-
+/var/lib/zvmsdk/zvmguestconfigure
+/var/lib/zvmsdk/zvmguestconfigure.service
 %dir %attr(0755, zvmsdk, zvmsdk) /etc/zvmsdk
 %dir %attr(0755, zvmsdk, zvmsdk) /var/log/zvmsdk
 %dir %attr(0755, zvmsdk, zvmsdk) /var/opt/zvmsdk
