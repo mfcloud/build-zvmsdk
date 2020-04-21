@@ -1,9 +1,10 @@
 %define name python-zvm-sdk
+%define _buildnum %(date +%Y%m%d%H%M)
 
 Summary: IBM z/VM cloud connector
 Name: %{name}
 Version: 1.5.0
-Release: 11.ibm%{?dist}
+Release: 11.ibm.%{_buildnum}%{?dist}
 Source: python-zvm-sdk.tar.gz
 Vendor: IBM
 License: ASL 2.0
