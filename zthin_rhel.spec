@@ -1,9 +1,10 @@
 %define name zthin
+%define _buildnum %(date +%Y%m%d%H%M)
 
 Summary: System z hardware control point (zThin)
 Name: %{name}
 Version: %(cat Version)
-Release: 11.ibm%{?dist}
+Release: 11.ibm.%{_buildnum}%{?dist}
 Source: zthin-build.tar.gz
 Vendor: IBM
 License: ASL 2.0

@@ -1,16 +1,17 @@
 %define name python-zvm-sdk
+%define _buildnum %(date +%Y%m%d%H%M)
 
 Summary: IBM z/VM cloud connector
 Name: %{name}
 Version: 1.5.0
-Release: 11.ibm%{?dist}
+Release: 11.ibm.%{_buildnum}%{?dist}
 Source: python-zvm-sdk.tar.gz
 Vendor: IBM
 License: ASL 2.0
 BuildArch: noarch
 Group: System/tools
 Autoreq: no
-Requires: python >= 2.7, python-netaddr >= 0.7.5, python2-PyJWT >= 1.0.1, python2-requests >= 2.6.0, python-routes >= 2.2, python-webob >= 1.2.3, python2-jsonschema >= 2.3.0, python-six >= 1.9.0, zthin >= 3.1.0
+Requires: python >= 2.7, python-netaddr >= 0.7.5, python2-PyJWT >= 1.0.1, python2-requests >= 2.6.0, python-routes >= 2.2, python-webob >= 1.2.3, python2-jsonschema >= 2.3.0, python-six >= 1.9.0, zthin >= 3.1.0, python-jinja2 >= 2.10, PyYAML>=3.10
 BuildRoot: %{_tmppath}/python-zvm-sdk
 Prefix: /opt/python-zvm-sdk
 
@@ -32,14 +33,16 @@ mkdir -p %{buildroot}/etc/zvmsdk
 mkdir -p %{buildroot}/var/log/zvmsdk
 mkdir -p %{buildroot}/var/opt/zvmsdk
 cp zvmsdklogs %{buildroot}/var/opt/zvmsdk
-
+cp tools/share/zvmguestconfigure  %{buildroot}/var/lib/zvmsdk/
+cp tools/share/zvmguestconfigure.service %{buildroot}/var/lib/zvmsdk/
 
 %clean
 rm -rf %{buildroot}
 
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
-
+/var/lib/zvmsdk/zvmguestconfigure
+/var/lib/zvmsdk/zvmguestconfigure.service
 %dir %attr(0755, zvmsdk, zvmsdk) /etc/zvmsdk
 %dir %attr(0755, zvmsdk, zvmsdk) /var/log/zvmsdk
 %dir %attr(0755, zvmsdk, zvmsdk) /var/opt/zvmsdk
