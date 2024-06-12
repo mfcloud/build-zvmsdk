@@ -1,25 +1,27 @@
-%define name python-zvm-sdk
+# Copyright 2024 Contributors to the Open Mainframe Project.
+
+%define name zvmsdk
 
 Summary: IBM z/VM cloud connector
 Name: %{name}
 Version: 1.4.0
 Release: 1
-Source: python-zvm-sdk.tar.gz
+Source: zvmsdk.tar.gz
 Vendor: IBM
 License: ASL 2.0
 BuildArch: noarch
 Group: System/tools
 Autoreq: no
 Requires: python >= 2.7, python-netaddr >= 0.7.5, python-PyJWT >= 1.0.1, python-requests >= 2.6.0, python-Routes >= 2.2, python-WebOb >= 1.2.3, python-jsonschema >= 2.3.0, python-six >= 1.9.0, zthin >= 3.1.0
-BuildRoot: %{_tmppath}/python-zvm-sdk
-Prefix: /opt/python-zvm-sdk
+BuildRoot: %{_tmppath}/zvmsdk
+Prefix: /opt/zvmsdk
 
 %description
 The System z/VM cloud connector is a set of APIs to be used
 by external API consumer.
 
 %prep
-tar -zxvf ../SOURCES/python-zvm-sdk.tar.gz -C ../BUILD/ --strip 1
+tar -zxvf ../SOURCES/zvmsdk.tar.gz -C ../BUILD/ --strip 1
 
 %build
 python setup.py build

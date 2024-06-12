@@ -1,3 +1,5 @@
+# Copyright 2024 Contributors to the Open Mainframe Project.
+
 %define name zthin
 
 Summary: System z hardware control point (zThin)
@@ -16,17 +18,18 @@ The System z hardware control point (zThin) is a set of APIs to interface with
 z/VM SMAPI. It is used to manage virtual machines running Linux on
 System z.
 
+BuildRequires: libtirpc-devel
+
 %define builddate %(date)
 
 %prep
 tar -zxvf ../SOURCES/zthin-build.tar.gz -C ../BUILD/ --strip 1
 
 %build
-make
+OS_IS_RHEL8=1 make
 
 %install
 make install
-make post
 
 mkdir -p $RPM_BUILD_ROOT/usr/bin
 mkdir -p $RPM_BUILD_ROOT/opt/zthin/bin
@@ -64,21 +67,6 @@ ZTHIN_LOG_HEADER="# Logging for SDK zThin"
 ZTHIN_LOG="/var/log/zthin/zthin.log"
 echo "Configuring syslog"
 
-# SUSE Linux Enterprise Server
-if [ -e "/etc/init.d/syslog" ]; then
-    # Syslog is the standard for log messages
-    grep ${ZTHIN_LOG} /etc/syslog.conf > /dev/null || (echo -e "\n${ZTHIN_LOG_HEADER}\nlocal5.*        ${ZTHIN_LOG}" >> /etc/syslog.conf)
-elif [ -e "/opt/ibm/cmo/version" ]; then
-    grep ${ZTHIN_LOG} /etc/rsyslog.conf > /dev/null || (echo -e "\n${ZTHIN_LOG_HEADER}\nlocal5.*        ${ZTHIN_LOG}" >> /etc/rsyslog.conf)
-fi
-if [ -e "/etc/syslog-ng/syslog-ng.conf" ]; then
-    # Syslog-ng is the replacement for syslogd
-    grep ${ZTHIN_LOG} /etc/syslog-ng/syslog-ng.conf > /dev/null || (echo -e "\n${ZTHIN_LOG_HEADER}\n\
-filter f_zthin  { facility(local5); };\n\
-destination zthinlog { file(\"${ZTHIN_LOG}\"); };\n\
-log { source(src); filter(f_zthin); destination(zthinlog); };" >> /etc/syslog-ng/syslog-ng.conf)
-fi
-
 # Red Hat Enterprise Linux
 if [[ -e "/etc/rc.d/init.d/rsyslog" ]] || [[ -e "/etc/sysconfig/rsyslog" ]]; then
     grep ${ZTHIN_LOG} /etc/rsyslog.conf > /dev/null || (echo -e "\n${ZTHIN_LOG_HEADER}\nlocal5.*        ${ZTHIN_LOG}" >> /etc/rsyslog.conf)
@@ -88,8 +76,6 @@ fi
 if [ ! -f "/etc/logrotate.d/zthinlogs" ]; then
     cp /var/opt/zthin/zthinlogs /etc/logrotate.d
 fi
-
-
 
 # Restart syslog
 if [ -e "/etc/rc.d/init.d/rsyslog" ]; then
@@ -108,8 +94,7 @@ fi
 # Files provided by this package
 %defattr(-,root,root)
 /opt/zthin/*
-%config(noreplace) /opt/zthin/bin/smcli
-%config(noreplace) /usr/share/man/man1/smcli.1.gz
+%doc /usr/share/man/man1/smcli.1.gz
 %config(noreplace) /var/opt/zthin/tracing.conf
 %config(noreplace) /var/opt/zthin/settings.conf
 %config(noreplace) /var/opt/zthin/zthinlogs

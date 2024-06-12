@@ -1,5 +1,6 @@
 #!/bin/sh
 # Copyright 2017 IBM Corp.
+# Copyright 2024 Contributors to the Open Mainframe Project.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
@@ -23,18 +24,18 @@ if [[ -z "$1" ]]; then
    echo "buildzthinrpmlocal usage:"
    echo
    echo "   buildzthinrpmlocal SDK_TOPDIR"
-   echo "     SDK_TOPDIR: The top directory of python-zvm-sdk."
-   echo "                 If you do not have python-zvm-sdk in your local file"
+   echo "     SDK_TOPDIR: The top directory of feilong."
+   echo "                 If you do not have zvmsdk in your local file"
    echo "                 system, you can get one through:"
-   echo "                 # git clone https://github.com/mfcloud/python-zvm-sdk.git"
+   echo "                 # git clone https://github.com/openmainframeproject/feilong"
    echo
    exit 1
    }
 fi
 
 SDK_TOPDIR=$1
-BUILD=/root/zthin-build
-REPOTOP=python-zvm-sdk
+BUILD=~/rpmbuild
+REPOTOP=feilong
 ZTHINTOP=zthin-parts
 
 # Prepare environment

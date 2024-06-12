@@ -1,5 +1,6 @@
 #!/bin/sh
 # Copyright 2017 IBM Corp.
+# Copyright 2024 Contributors to the Open Mainframe Project.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
@@ -25,16 +26,16 @@ if [[ -z "$1" ]]; then
 fi
 
 BRANCH=$1
-BUILD=/root/zthin-build
-REPO=https://github.com/mfcloud/python-zvm-sdk.git
-REPOTOP=python-zvm-sdk
+BUILD=~/rpmbuild
+REPO=https://github.com/openmainframeproject/feilong
+REPOTOP=feilong
 ZTHINTOP=zthin-parts
 
 # Check whether branch exists or not
 EXISTS=$(git ls-remote -h $REPO | grep "$BRANCH"$ | wc -l )
 if [ "$EXISTS" == 0 ] ; then
    {
-   echo "Branch $BRANCH does not exist on /mfcloud/python-zvm-sdk"
+   echo "Branch $BRANCH does not exist on openmainframeproject/feilong"
    echo "Try choosing one of the following branches:  "
    git ls-remote --heads $REPO | awk -F "heads/" '{print $2}'
    exit 1
