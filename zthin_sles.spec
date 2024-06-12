@@ -1,3 +1,5 @@
+# Copyright 2024 Contributors to the Open Mainframe Project.
+
 %define name zthin
 
 Summary: System z hardware control point (zThin)
@@ -16,6 +18,8 @@ The System z hardware control point (zThin) is a set of APIs to interface with
 z/VM SMAPI. It is used to manage virtual machines running Linux on
 System z.
 
+BuildRequires: libtirpc-devel
+
 %define builddate %(date)
 
 %prep
@@ -26,7 +30,6 @@ make
 
 %install
 make install
-make post
 
 mkdir -p $RPM_BUILD_ROOT/usr/bin
 mkdir -p $RPM_BUILD_ROOT/opt/zthin/bin
@@ -79,17 +82,10 @@ destination zthinlog { file(\"${ZTHIN_LOG}\"); };\n\
 log { source(src); filter(f_zthin); destination(zthinlog); };" >> /etc/syslog-ng/syslog-ng.conf)
 fi
 
-# Red Hat Enterprise Linux
-if [[ -e "/etc/rc.d/init.d/rsyslog" ]] || [[ -e "/etc/sysconfig/rsyslog" ]]; then
-    grep ${ZTHIN_LOG} /etc/rsyslog.conf > /dev/null || (echo -e "\n${ZTHIN_LOG_HEADER}\nlocal5.*        ${ZTHIN_LOG}" >> /etc/rsyslog.conf)
-fi
-
 # Copy a zthin logrotate configuration file if it does not exist
 if [ ! -f "/etc/logrotate.d/zthinlogs" ]; then
     cp /var/opt/zthin/zthinlogs /etc/logrotate.d
 fi
-
-
 
 # Restart syslog
 if [ -e "/etc/rc.d/init.d/rsyslog" ]; then
@@ -108,8 +104,7 @@ fi
 # Files provided by this package
 %defattr(-,root,root)
 /opt/zthin/*
-%config(noreplace) /opt/zthin/bin/smcli
-%config(noreplace) /usr/share/man/man1/smcli.1.gz
+%doc /usr/share/man/man1/smcli.1.gz
 %config(noreplace) /var/opt/zthin/tracing.conf
 %config(noreplace) /var/opt/zthin/settings.conf
 %config(noreplace) /var/opt/zthin/zthinlogs

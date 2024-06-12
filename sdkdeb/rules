@@ -17,7 +17,7 @@ override_dh_auto_build:
 
 override_dh_install:
 	# rm -rf $(CURDIR)/debian/tmp
-	python setup.py install -f --install-layout=deb --root=$(CURDIR)/debian/python-zvm-sdk
+	python setup.py install -f --install-layout=deb --root=$(CURDIR)/debian/zvmsdk
 	PYTHONPATH=$(CURDIR)/debian/tmp/usr/lib/python2.7/dist-packages
-	mkdir -p $(CURDIR)/debian/python-zvm-sdk/var/opt/zvmsdk
-	cp zvmsdklogs $(CURDIR)/debian/python-zvm-sdk/var/opt/zvmsdk/
+	mkdir -p $(CURDIR)/debian/zvmsdk/var/opt/zvmsdk
+	cp zvmsdklogs $(CURDIR)/debian/zvmsdk/var/opt/zvmsdk/

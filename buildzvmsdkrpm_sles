@@ -1,5 +1,6 @@
 #!/bin/sh
 # Copyright 2017 IBM Corp.
+# Copyright 2024 Contributors to the Open Mainframe Project.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
@@ -22,15 +23,15 @@ if [[ -z "$1" ]]; then
 fi
 
 BRANCH=$1
-BUILD=~/rpmbuild_sles
-REPO=https://github.com/mfcloud/python-zvm-sdk.git
-REPOTOP=python-zvm-sdk
-SDK=python-zvm-sdk
+BUILD=~/rpmbuild
+REPO=https://github.com/openmainframeproject/feilong
+REPOTOP=feilong
+SDK=zvmsdk
 
 EXISTS=$(git ls-remote -h $REPO | grep "$BRANCH"$ | wc -l )
 if [ "$EXISTS" == 0 ] ; then
 {
-  echo "Branch $BRANCH does not exist on /mfcloud/python-zvm-sdk"
+  echo "Branch $BRANCH does not exist on openmainframeproject/feilong"
   echo "Try choosing one of the following branches:  "
   git ls-remote --heads $REPO | awk -F "heads/" '{print $2}'
   exit 1
@@ -66,15 +67,15 @@ mkdir -p $BUILD/OUTPUT 2>/dev/null
 # rm -rf ./$REPOTOP
 # git clone $REPO -b $BRANCH
 
-echo "===>compress sdk sourcefiles to $BUILD/SOURCES/python-zvm-sdk.tar.gz"
+echo "===>compress sdk sourcefiles to $BUILD/SOURCES/zvmsdk.tar.gz"
 pwd
 
 cp ./zvmsdklogs $REPOTOP/
-tar czf $BUILD/SOURCES/python-zvm-sdk.tar.gz --exclude .git --exclude "zthin-parts" $REPOTOP
+tar czf $BUILD/SOURCES/zvmsdk.tar.gz --exclude .git --exclude "zthin-parts" $REPOTOP
 
 cp ./zvmsdk_sles.spec $BUILD/SPECS
 
-echo "===>Switch back to python-zvm-sdk, do: rpmbuild -ba -v $BUILD/SPECS/zvmsdk_sles.spec"
+echo "===>Switch back to zvmsdk, do: rpmbuild -ba -v $BUILD/SPECS/zvmsdk_sles.spec"
 cd $BUILD/$REPOTOP/$SDK 2>/dev/null
 pwd
 rpmbuild -ba -v $BUILD/SPECS/zvmsdk_sles.spec
