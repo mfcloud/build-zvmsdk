@@ -4,11 +4,11 @@
 
 Summary: System z hardware control point (zThin)
 Name: %{name}
-Version: %(cat Version)
+Version: 3.1.2
 Release: 1
 Source: zthin-build.tar.gz
 Vendor: IBM
-License: ASL 2.0
+License: Apache-2.0
 Group: System/tools
 BuildRoot: %{_tmppath}/zthin
 Prefix: /opt/zthin
@@ -88,11 +88,7 @@ if [ ! -f "/etc/logrotate.d/zthinlogs" ]; then
 fi
 
 # Restart syslog
-if [ -e "/etc/rc.d/init.d/rsyslog" ]; then
-    /etc/rc.d/init.d/rsyslog restart
-else
-    service rsyslog restart
-fi
+%systemd_post rsyslog.service
 
 /sbin/ldconfig
 
