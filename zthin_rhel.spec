@@ -4,11 +4,11 @@
 
 Summary: System z hardware control point (zThin)
 Name: %{name}
-Version: %(cat Version)
+Version: 3.1.2
 Release: 1
 Source: zthin-build.tar.gz
 Vendor: IBM
-License: ASL 2.0
+License: Apache-2.0
 Group: System/tools
 BuildRoot: %{_tmppath}/zthin
 Prefix: /opt/zthin
@@ -26,7 +26,7 @@ BuildRequires: libtirpc-devel
 tar -zxvf ../SOURCES/zthin-build.tar.gz -C ../BUILD/ --strip 1
 
 %build
-OS_IS_RHEL8=1 make
+make
 
 %install
 make install
@@ -78,22 +78,16 @@ if [ ! -f "/etc/logrotate.d/zthinlogs" ]; then
 fi
 
 # Restart syslog
-if [ -e "/etc/rc.d/init.d/rsyslog" ]; then
-    /etc/rc.d/init.d/rsyslog restart
-else
-    service rsyslog restart
-fi
+%systemd_post rsyslog.service
 
 /sbin/ldconfig
-
-%preun
-# Delete man page and smcli command
-# rm -rf /usr/share/man/man1/smcli.1.gz
 
 %files
 # Files provided by this package
 %defattr(-,root,root)
 /opt/zthin/*
+%dir /opt/zthin
+%dir /var/opt/zthin
 %doc /usr/share/man/man1/smcli.1.gz
 %config(noreplace) /var/opt/zthin/tracing.conf
 %config(noreplace) /var/opt/zthin/settings.conf
