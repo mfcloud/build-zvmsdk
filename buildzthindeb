@@ -1,5 +1,6 @@
 #!/bin/sh
 # Copyright 2017 IBM Corp.
+# Copyright 2024 Contributors to the Open Mainframe Project.
 #
 #    Licensed under the Apache License, Version 2.0 (the "License"); you may
 #    not use this file except in compliance with the License. You may obtain
@@ -28,9 +29,9 @@ fi
 BRANCH=$1
 
 # copy from
-REPO=https://github.com/mfcloud/python-zvm-sdk.git
-REPOTOP=python-zvm-sdk
-ZTHIN=zthin-parts
+REPO=https://github.com/openmainframeproject/feilong
+REPOTOP=feilong
+ZTHINTOP=zthin-parts
 
 # real copy
 EXISTS=$(git ls-remote -h $REPO | grep "$BRANCH"$ | wc -l )
@@ -57,9 +58,8 @@ mkdir $REPOTOP/$ZTHIN/debian
 cp zthindeb/* $REPOTOP/$ZTHIN/debian
 cp ./zthinlogs $REPOTOP/$ZTHIN
 
-# Enter build directory, it's ./python-zvm-sdk/zthin-parts
+# Enter build directory, it's ./feilong/zthin-parts
 cd $REPOTOP/$ZTHIN
 
 # start the real debian build
 dpkg-buildpackage -uc -us
-
