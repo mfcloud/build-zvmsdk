@@ -2,7 +2,7 @@ Source: zthin
 Section: libs
 Priority: optional
 Maintainer: jichen <jichenjc@cn.ibm.com>
-#Build-Depends: debhelper (>=9)
+Build-Depends: debhelper (>= 12), dh-python, dh-make, python3-all, python3-setuptools, python3-webob, python3-mock, python3-netaddr, python3-routes, python3-webob, python3-testtools
 Standards-Version: 3.9.6
 # FIXME: switch to IBM home page later
 Homepage: http://cloudlib4zvm.readthedocs.io
@@ -14,3 +14,4 @@ Description: zthin package
  The System z hardware control point (zThin) is a set of APIs to interface with
  z/VM SMAPI. It is used to manage virtual machines running Linux on
  System z.
+linux1@test107:~/build-zvmsdk/zthindeb$ 
